@@ -1,0 +1,21 @@
+.MobileOnly:hover {
+    cursor: pointer;
+}
+
+.HamburgerIcon div {
+    width: 35px;
+    height: 5px;
+    border-radius: 15px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+@media screen and (min-width: 500px) {
+    .HamburgerIcon div {
+        display: none;
+    }
+
+    .MobileOnly {
+        display: none;
+    }
+}
