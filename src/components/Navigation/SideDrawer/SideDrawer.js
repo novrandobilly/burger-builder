@@ -7,24 +7,26 @@ import Backdrop from '../../UI/Backdrop/Backdrop';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 const sideDrawer = (props) => {
-    const SDClass = [
-        classes.SideDrawer,
-        props.show ? classes.Open : classes.Closed
-    ].join(' ');
+   const SDClass = [
+      classes.SideDrawer,
 
-    return (
-        <Auxiliary>
-            <Backdrop show={props.show} clicked={props.closed} />
-            <div className={SDClass}>
-                <div className={classes.Logo}>
-                    <Logo />
-                </div>
-                <nav>
-                    <NavigationItems />
-                </nav>
+         props.show ? classes.Open :
+         classes.Closed
+   ].join(' ');
+
+   return (
+      <Auxiliary>
+         <Backdrop show={props.show} clicked={props.closed} />
+         <div className={SDClass} onClick={props.closed}>
+            <div className={classes.Logo}>
+               <Logo />
             </div>
-        </Auxiliary>
-    );
+            <nav>
+               <NavigationItems isAuthenticated={props.isAuth} />
+            </nav>
+         </div>
+      </Auxiliary>
+   );
 };
 
 export default sideDrawer;

@@ -1,0 +1,10 @@
+{
+   "prettier.arrayExpand": true,
+   "prettier.breakProperty": true,
+   "prettier.flattenTernaries": true,
+   "prettier.jsxBracketSameLine": true,
+   "prettier.noSpaceEmptyFn": true,
+   "prettier.jsxSingleQuote": true,
+   "prettier.spaceBeforeFunctionParen": true,
+   "prettier.useTabs": false
+}
