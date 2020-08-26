@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Auxiliary from '../Auxiliary/Auxiliary';
@@ -6,37 +6,34 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
-class Layout extends Component {
-   state = {
-      showSideDrawer : false
+const Layout = props => {
+   const [
+      sideDrawer,
+      setSideDrawer
+   ] = useState(false);
+
+   const sideDrawerClosedHandler = () => {
+      setSideDrawer(false);
    };
 
-   sideDrawerClosedHandler = () => {
-      this.setState({ showSideDrawer: false });
+   const toggleSideDrawerHandler = () => {
+      setSideDrawer(prevState => ({ sideDrawer: !prevState.sideDrawer }));
    };
 
-   toggleSideDrawerHandler = () => {
-      this.setState((prevState) => {
-         return { showSideDrawer: !prevState.showSideDrawer };
-      });
-   };
+   return (
+      <Auxiliary>
+         <Toolbar toggleSideDrawer={toggleSideDrawerHandler} isAuth={props.isAuthenticated} />
+         <SideDrawer
+            closed={sideDrawerClosedHandler}
+            show={sideDrawer}
+            isAuth={props.isAuthenticated}
+         />
+         <main className={classes.Content}>{props.children}</main>
+      </Auxiliary>
+   );
+};
 
-   render () {
-      return (
-         <Auxiliary>
-            <Toolbar toggleSideDrawer={this.toggleSideDrawerHandler} isAuth={this.props.isAuthenticated} />
-            <SideDrawer
-               closed={this.sideDrawerClosedHandler}
-               show={this.state.showSideDrawer}
-               isAuth={this.props.isAuthenticated}
-            />
-            <main className={classes.Content}>{this.props.children}</main>
-         </Auxiliary>
-      );
-   }
-}
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       isAuthenticated : state.auth.token !== null
    };

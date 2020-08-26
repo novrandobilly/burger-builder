@@ -1,5 +1,4 @@
 {
-   "prettier.arrayExpand": true,
    "prettier.breakProperty": true,
    "prettier.flattenTernaries": true,
    "prettier.jsxBracketSameLine": true,
